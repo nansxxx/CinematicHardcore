@@ -5,88 +5,87 @@
 ![Platform](https://img.shields.io/badge/Platform-Paper-orange.svg)
 ![Java](https://img.shields.io/badge/Java-21-red.svg)
 
-**CinematicHardcore** adalah plugin Paper 1.21.x yang menghadirkan pengalaman *Cinematic Introduction* yang epik dan mulus untuk pemain baru, dipadukan dengan sistem *Hardcore* yang sesungguhnya (kematian permanen).
-
-Plugin ini terinspirasi dari video referensi Minecraft dengan visual *Cinematic Fantasy Hardcore*, dilengkapi dengan animasi Totem 3D, partikel, transisi layar, dan sistem deployment spawn yang aman.
+**CinematicHardcore** is a Paper 1.21.x plugin that delivers an epic, fully **automated Cinematic Introduction** for players when they first join the server. It is seamlessly integrated with a true *Hardcore* system (permanent death) and stunning *Cinematic Fantasy* visuals.
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Key Features
 
-- 🎥 **Cinematic Engine:** 8 Scene sinematik (Opening, Welcome, Guide, Hardcore Warning, Enter World, Countdown, Deployment).
-- 🗿 **3D Floating Totem:** Animasi Totem of Undying yang melayang dan berputar secara 3D menggunakan *ItemDisplay Entity*.
-- 📸 **Camera Shake & Transitions:** Efek getar kamera (partikel) dan transisi layar (Blindness/Darkness) yang halus.
-- ⏱️ **BossBar Countdown:** Hitungan mundur sebelum terjun ke dunia menggunakan *BossBar* merah yang epik.
-- 🛡️ **Anti-Crash & Anti-Dupe:** Menyimpan inventory pemain secara aman sebelum cinematic. Jika server crash, inventory tidak akan hilang.
-- 💀 **Real Hardcore System:** Menyimpan status kematian permanen menggunakan UUID. Pemain yang mati tidak bisa lolos hanya dengan *reconnect*.
-- 🌍 **Safe Deployment:** Mencari lokasi spawn acak yang aman (bebas lava, jurang, atau laut) dengan validasi blok.
-- 🌐 **Multi-Language GUI:** Mendukung Bahasa Indonesia & Inggris. Pemain dapat mengganti bahasa via GUI `/changelang`.
-- 📢 **Discord Webhook:** Kirim notifikasi otomatis ke Discord saat ada pemain yang mati Hardcore.
-- ⚙️ **Fully Configurable:** Semua teks, durasi, suara, dan partikel dapat diubah melalui `config.yml`.
-- 🔗 **PlaceholderAPI Support:** Mendukung placeholder dari plugin lain (misal: Rank LuckPerms).
+- 🤖 **Auto-Play Cinematic:** **NO COMMANDS REQUIRED.** When a new player logs in, the plugin automatically detects them, freezes their movement, and plays the 8-scene Cinematic sequence.
+- 🎥 **Cinematic Engine:** 8 distinct cinematic scenes (Opening, Welcome, Guide, Hardcore Warning, Enter World, Countdown, Deployment) with smooth transitions.
+- 🗿 **3D Floating Totem:** A beautifully animated Totem of Undying floating and rotating in 3D using *ItemDisplay Entities*.
+- 📸 **Camera Shake & Transitions:** Immersive camera shake effects (particles) and smooth screen transitions (Blindness/Darkness).
+- ⏱️ **BossBar Countdown:** An epic red *BossBar* counting down before the player is deployed into the world.
+- 🛡️ **Anti-Crash & Anti-Dupe:** Safely backs up the player's inventory before the cinematic. If the server crashes, inventories are preserved, and the cinematic is safely bypassed.
+- 💀 **Real Hardcore System:** Permanently saves death status using UUIDs. Dead players cannot bypass this status just by reconnecting.
+- 🌍 **Safe Deployment:** Searches for a random, safe spawn location (avoiding lava, ravines, or oceans) using block validation.
+- 🌐 **Multi-Language GUI:** Supports English & Indonesian. Players can switch languages via the `/changelang` GUI.
+- ⚙️ **Fully Configurable:** All text, durations, sounds, and particles can be customized via `config.yml`.
 
 ---
 
-## 📋 Persyaratan (Requirements)
+## ⚙️ How It Works (Automated)
 
-- **Server:** Paper 1.21.x (atau fork seperti Purpur)
+1. **Player Joins:** A new player logs into the server.
+2. **Automatic Check:** The plugin checks the database (by UUID). Has this player completed the intro before?
+   * If **No**, the plugin delays for 1 second (to allow the client to load the chunks) and then **automatically starts the Cinematic** (locking the player's controls).
+   * If **Yes**, the player joins normally without any interruption.
+3. **Deployment:** After the cinematic ends, the player is automatically teleported to a safe location in the Overworld, and their controls are restored.
+
+*Note: The `/intro` command is strictly for Admins for debugging purposes (force start, skip, or reset). Normal players never need to use it.*
+
+---
+
+## 📋 Requirements
+
+- **Server:** Paper 1.21.x (or forks like Purpur)
 - **Java:** JDK 21
-- **Dependensi Opsional:** [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (Untuk fitur Placeholder)
+- **Optional Dependency:** [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (For placeholder support)
 
 ---
 
-## 🚀 Instalasi (Installation)
+## 🚀 Installation
 
-1. Download file `CinematicHardcore.jar` dari halaman **Releases**.
-2. Masukkan file `.jar` ke dalam folder `plugins/` di server Anda.
-3. Nyalakan server untuk menghasilkan file konfigurasi default.
-4. (Opsional) Install plugin **PlaceholderAPI** jika ingin menggunakan fitur placeholder.
-5. Restart server. Selesai!
-
----
-
-## 🎮 Perintah & Permission (Commands & Permissions)
-
-| Command | Deskripsi | Permission |
-|---------|-----------|------------|
-| `/guide` | Membuka panduan server | `cinematichardcore.guide` (Default: All) |
-| `/changelang` | Membuka GUI pemilih bahasa | `cinematichardcore.guide` (Default: All) |
-| `/intro start <player>` | Memulai cinematic secara paksa | `cinematichardcore.intro` (Default: OP) |
-| `/intro skip <player>` | Melewati cinematic pemain | `cinematichardcore.intro` (Default: OP) |
-| `/intro reset <player>` | Mereset status intro pemain | `cinematichardcore.intro` (Default: OP) |
-| `/intro reload` | Reload config & bahasa | `cinematichardcore.intro` (Default: OP) |
-| `/intro status <player>` | Melihat status cinematic pemain | `cinematichardcore.intro` (Default: OP) |
-| `/intro editor` | Membuka GUI Editor Config (Admin) | `cinematichardcore.intro` (Default: OP) |
-
-**Permission Lainnya:**
-- `cinematichardcore.bypass` : Melewati cinematic dan sistem kematian Hardcore (Default: OP).
+1. Download the `CinematicHardcore.jar` file from the **Releases** page.
+2. Place the `.jar` file into your server's `plugins/` folder.
+3. Start the server to generate the default configuration files.
+4. (Optional) Install **PlaceholderAPI** if you wish to use placeholders.
+5. Restart the server. Done! New players will automatically experience the Cinematic on their first join.
 
 ---
 
-## ⚙️ Konfigurasi (Configuration)
+## 🎮 Commands & Permissions (Admin Only)
 
-Semua pengaturan dapat ditemukan di `plugins/CinematicHardcore/config.yml`.
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/guide` | Opens the server guide | `cinematichardcore.guide` (Default: All) |
+| `/changelang` | Opens the language selection GUI | `cinematichardcore.guide` (Default: All) |
+| `/intro start <player>` | Forces the cinematic to play for a player | `cinematichardcore.intro` (Default: OP) |
+| `/intro skip <player>` | Skips the cinematic for a player | `cinematichardcore.intro` (Default: OP) |
+| `/intro reset <player>` | Resets intro status (useful for testing) | `cinematichardcore.intro` (Default: OP) |
+| `/intro reload` | Reloads config & language files | `cinematichardcore.intro` (Default: OP) |
+| `/intro status <player>` | Checks a player's cinematic status | `cinematichardcore.intro` (Default: OP) |
+| `/intro editor` | Opens the Config Editor GUI (Admin) | `cinematichardcore.intro` (Default: OP) |
+
+**Bypass Permission:**
+- `cinematichardcore.bypass` : Skips the auto-cinematic (highly recommended for Admin/Staff accounts) and grants immunity to the Hardcore death system.
+
+---
+
+## ⚙️ Important Configuration
+
+All settings can be found in `plugins/CinematicHardcore/config.yml`.
 
 ```yaml
 settings:
-  first-join-only: true # Jika true, cinematic hanya untuk pemain baru
+  # IF TRUE: Cinematic ONLY plays automatically for first-time players.
+  # IF FALSE: Cinematic plays automatically EVERY TIME a player logs in.
+  first-join-only: true 
 
 cinematic:
   enabled: true
-  opening:
-    duration: 9
-    title: "<gradient:#00ff88:#00ccff><bold>GILIRANMU TIBA!</bold></gradient>"
-    # ...
-  deployment:
-    world: world
-    min-distance-from-spawn: 500
-    max-distance-from-spawn: 3000
-    max-attempts: 50
-
+  # ... (Duration, title, and sound settings per scene)
+  
 hardcore:
   enabled: true
-  death-message: "<red>Kamu telah mati dalam mode Hardcore.</red>"
-
-discord:
-  enabled: false
-  webhook-url: "URL_DISCORD_ANDA_DISINI"
+  death-message: "<red>You have died in Hardcore mode.</red>"
