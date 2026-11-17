@@ -1,0 +1,35 @@
+name: CinematicHardcore
+version: 1.0.0
+main: com.nanskieee.cinematicHardcore.CinematicHardcore
+api-version: '1.21'
+author: Nanskieee
+description: Cinematic introduction & hardcore system
+
+commands:
+  guide:
+    description: Membuka panduan server
+    usage: /guide
+  intro:
+    description: Mengelola cinematic intro
+    usage: /intro <start|skip|reset|reload|status> [player]
+  changelang:
+    description: Mengubah bahasa (Language GUI)
+    usage: /changelang
+
+permissions:
+  cinematichardcore.admin:
+    description: Akses penuh admin
+    default: op
+    children:
+      cinematichardcore.guide: true
+      cinematichardcore.intro: true
+      cinematichardcore.bypass: true
+  cinematichardcore.guide:
+    description: Akses /guide
+    default: true
+  cinematichardcore.intro:
+    description: Akses /intro
+    default: op
+  cinematichardcore.bypass:
+    description: Lewati cinematic otomatis
+    default: op

@@ -1,0 +1,58 @@
+settings:
+  language: id
+  debug: false
+  first-join-only: true
+
+cinematic:
+  enabled: true
+  opening:
+    enabled: true
+    duration: 9
+    title: "<gradient:#00ff88:#00ccff><bold>GILIRANMU TIBA!</bold></gradient>"
+    subtitle: "<white>Memasuki ruang intro dalam <green>{countdown}</green>..."
+    sound: "BLOCK_NOTE_BLOCK_CHIME"
+  welcome:
+    enabled: true
+    duration: 4
+    title: "<green><bold>Selamat Datang</bold></green>"
+    subtitle: "<white>{player}</white>"
+  guide:
+    enabled: true
+    duration: 4
+    title: "<aqua><bold>Panduan Server</bold></aqua>"
+    subtitle: "<white>Ketik <yellow>/guide</yellow> untuk memulai"
+  hardcore:
+    enabled: true
+    duration: 4
+    title: "<red><bold>Bersiaplah...</bold></red>"
+    subtitle: "<white>Kematian di dunia ini bersifat permanen."
+  enter:
+    enabled: true
+    duration: 4
+    title: "<green><bold>Memasuki Dunia</bold></green>"
+    subtitle: "<white>Overworld...</white>"
+  deployment:
+    enabled: true
+    world: world
+    countdown: 3
+    min-distance-from-spawn: 500
+    max-distance-from-spawn: 3000
+    max-attempts: 50
+
+hardcore:
+  enabled: true
+  death-message: "<red>Kamu telah mati dalam mode Hardcore. Kamu berada di Spectator.</red>"
+
+# BAGIAN BARU: PANDUAN SERVER (Bisa diedit sesuka hati)
+guide:
+  lines:
+    - "<gray>======================================"
+    - " <aqua><bold>PANDUAN SERVER</bold></aqua>"
+    - "<gray>======================================"
+    - "<yellow>• <white>Server ini menggunakan mode <red><bold>Hardcore</bold></red>."
+    - "<yellow>• <white>Jika kamu mati, kamu tidak bisa respawn secara normal (Menjadi Spectator)."
+    - "<yellow>• <white>Bertahanlah hidup dan jangan mati!"
+    - "<yellow>• <white>Gunakan <green>/intro</green> untuk melihat cinematic kembali (jika admin mengizinkan)."
+    - "<yellow>• <white>Butuh bantuan? Hubungi Admin atau Staff."
+    - "<gray>======================================"
+    - "<gray>Halo <green>{player}</green>, semoga harimu menyenangkan!"
