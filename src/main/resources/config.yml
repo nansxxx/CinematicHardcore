@@ -16,6 +16,7 @@ cinematic:
     duration: 4
     title: "<green><bold>Selamat Datang</bold></green>"
     subtitle: "<white>{player}</white>"
+    animation-enabled: false # FALSE = Animasi 3D dipindah ke World Survival
   guide:
     enabled: true
     duration: 4
@@ -33,7 +34,7 @@ cinematic:
     subtitle: "<white>Overworld...</white>"
   deployment:
     enabled: true
-    world: world
+    world: world_survival # <-- GANTI DENGAN NAMA WORLD SURVIVAL ANDA
     countdown: 3
     min-distance-from-spawn: 500
     max-distance-from-spawn: 3000
@@ -43,7 +44,15 @@ hardcore:
   enabled: true
   death-message: "<red>Kamu telah mati dalam mode Hardcore. Kamu berada di Spectator.</red>"
 
-# BAGIAN BARU: PANDUAN SERVER (Bisa diedit sesuka hati)
+database:
+  type: SQLITE # Pilihan: SQLITE atau MYSQL
+  mysql:
+    host: localhost
+    port: 3306
+    database: minecraft
+    username: root
+    password: ""
+
 guide:
   lines:
     - "<gray>======================================"
@@ -53,6 +62,5 @@ guide:
     - "<yellow>• <white>Jika kamu mati, kamu tidak bisa respawn secara normal (Menjadi Spectator)."
     - "<yellow>• <white>Bertahanlah hidup dan jangan mati!"
     - "<yellow>• <white>Gunakan <green>/intro</green> untuk melihat cinematic kembali (jika admin mengizinkan)."
-    - "<yellow>• <white>Butuh bantuan? Hubungi Admin atau Staff."
     - "<gray>======================================"
     - "<gray>Halo <green>{player}</green>, semoga harimu menyenangkan!"
